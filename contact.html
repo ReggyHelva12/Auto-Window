@@ -124,7 +124,13 @@
             }
         }
     </style>
-    
+    <!-- Tambahkan EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("s3xhXxuLNR3Pwp82L"); // Ganti dengan User ID Anda dari EmailJS
+       })();
+    </script>
 </head>
 <body>
     <header>
@@ -133,9 +139,9 @@
     </header>
     <nav>
         <a href="index.html">Home</a>
-        <a href="#pemasangan">Produk</a>
+        <a href="#produk.html">Produk</a>
         <a href="artikel.html">Artikel</a>
-        <a href="#contact">Contact</a>
+        <a href="contact.html">Contact</a>
     </nav>
     <div class="container">
         <section>
@@ -143,10 +149,39 @@
                 <img src="window_Mobil.png" alt="Window Mobil">
             </div>
         </section>
-    
+        <section id="contact">
+            <div class="contact-form">
+                <h2>Call Center</h2>
+                <form id="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
     </div>
     <footer>
         <p>&copy; 2024 Auto Window. All rights reserved.</p>
     </footer>
+
+    <!-- Tambahkan script untuk mengirim email -->
+    <script type="text/javascript">
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            emailjs.sendForm('service_09zm872', 'template_295olb3', this)
+                .then(function() {
+                    alert('Message sent successfully!');
+                }, function(error) {
+                    alert('Failed to send message: ' + JSON.stringify(error));
+                });
+        });
+    </script>
 </body>
 </html>
