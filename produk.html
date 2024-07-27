@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Auto Window</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px 0;
+        }
+        nav a, nav button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #555;
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 5px 5px;
+            text-decoration: none;
+        }
+        nav a:hover, nav button:hover {
+            background-color: #555;
+            color: white;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: calc(25% - 40px); /* Adjust product width */
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+        .product h2 {
+            margin: 10px 0 5px 0;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product p.price {
+            color: red; /* Set the price color to red */
+            font-weight: bold; /* Optional: make the price bold */
+            margin: 5px 0;
+        }
+        .product p {
+            margin: 5px 0;
+        }
+        @media (max-width: 1200px) {
+            .product {
+                width: calc(33.33% - 40px); /* Width for medium screens */
+            }
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 40px); /* Width for small screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .product {
+                width: calc(100% - 40px); /* Width for very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Daftar Produk</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="produk.html">Produk</a>
+        <a href="artikel.html">Artikel</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <nav>
+        <button onclick="filterProducts('all')">Semua</button>
+        <button onclick="filterProducts('kategori1')">Regulator</button>
+        <button onclick="filterProducts('kategori2')">Motor</button>
+        <button onclick="filterProducts('kategori3')">Power Window Set</button>
+        <button onclick="filterProducts('kategori4')">Lainnya</button>
+    </nav>
+    <main>
+        <div id="product-list">
+            <div class="product" data-category="kategori3">
+                <img src="Vios_gen2.png" alt="Produk 1">
+                <h2>Power Window set 4 pintu Vios limo gen 2 Original PNP</h2>
+                <p class="price">Rp 1.400.000</p>
+                <p>Untuk mobil vios limo gen 2 tahun 2007-2013. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Vios_gen3.png" alt="Produk 2">
+                <h2>Power Window set 4 pintu Vios limo gen 3 Original PNP</h2>
+                <p class="price">Rp 1.500.000</p>
+                <p>Untuk mobil vios limo gen 2 tahun 2013-2022. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Amrest_GM.jpg" alt="Produk 3">
+                <h2>Armrest set Daihatsu Grandmax Minibus, pickup, blindvan</h2>
+                <p class="price">Rp 165.000</p>
+                <p>Armrest untuk mobil grandmax. Sudah termasuk tutup baut dan tutup atasnya.</p>
+            </div>
+            <div class="product" data-category="kategori1">
+                <img src="regulator_GM.jpg" alt="Produk 4">
+                <h2>Regulator gigi Power window Grandmax depan</h2>
+                <p class="price">Rp 170.000</p>
+                <p>Untuk mobil grandmax minibus, pickup, blindvan, box.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="mangkok_universal.jpg" alt="Produk 5">
+                <h2>Mangkok doortrim power window panther Hi-sporty</h2>
+                <p class="price">Rp 17.000</p>
+                <p>Tersedia hanya warna hitam.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="mangkok_universal.jpg" alt="Produk 6">
+                <h2>Mangkok doortrim power window Vios limo, Kijang</h2>
+                <p class="price">Rp 17.000</p>
+                <p>Tersedia hanya warna hitam dan abu-abu. Untuk mobil vios limo (2007-2022) dan kijang kapsul LGX, LSX, SSX.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Ayla_4pintu.jpg" alt="Produk 7">
+                <h2>Power window set ayla 4 pintu siap pasang Original</h2>
+                <p class="price">Rp 2.000.000</p>
+                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off dari pintu supir.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="Rel-KACA.jpg" alt="Produk 8">
+                <h2>Rel kaca Regulator power window</h2>
+                <p class="price">Rp 45.000</p>
+                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="newa Carry_panah.jpg" alt="Produk 9">
+                <h2>Power window set New carry 2 pintu - (saklar biasa)</h2>
+                <p class="price">Rp 1.000.000</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar biasa untuk naik turun kaca. Pemasangan PNP</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Newcarry_auto.jpg" alt="Produk 10">
+                <h2>Power window set New carry 2 pintu - (saklar auto)</h2>
+                <p class="price">Rp 1.150.000</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar bisa auto up down. Tersedia tombol on off. Pemasangan PNP</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all' || product.getAttribute('data-category') === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Default to showing all products
+        filterProducts('all');
+    </script>
+</body>
+</html>
