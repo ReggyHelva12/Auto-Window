@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Auto Window</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav a, nav button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #555;
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 5px 5px;
+            text-decoration: none;
+        }
+        nav a:hover, nav button:hover {
+            background-color: #555;
+            color: white;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: calc(25% - 40px); /* Adjust product width */
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+        .product h2 {
+            margin: 10px 0 5px 0;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product p.price {
+            color: red; /* Set the price color to red */
+            font-weight: bold; /* Optional: make the price bold */
+            margin: 5px 0;
+        }
+        .product p {
+            margin: 5px 0;
+        }
+        @media (max-width: 1200px) {
+            .product {
+                width: calc(33.33% - 40px); /* Width for medium screens */
+            }
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 40px); /* Width for small screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .product {
+                width: calc(100% - 40px); /* Width for very small screens */
+            }
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 8px;
+            width: 250px;
+            font-size: 16px;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 10px 10px;
+            font-size: 16px;
+            border: 2px solid #000000;
+            border-radius: 4px;
+            background-color: #ffffff;
+            cursor: pointer;
+            color: #555;
+        }
+        .search-bar button:hover {
+            background-color: #555;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Daftar Produk</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="produk.html">Produk</a>
+        <a href="artikel.html">Artikel</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <nav>
+        <button onclick="filterProducts('all')">Semua</button>
+        <button onclick="filterProducts('kategori1')">Regulator</button>
+        <button onclick="filterProducts('kategori2')">Motor</button>
+        <button onclick="filterProducts('kategori3')">Power Window Set</button>
+        <button onclick="filterProducts('kategori4')">Lainnya</button>
+    </nav>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProducts()">
+        <button onclick="searchProducts()">Cari</button>
+    </div>
+
+    <main>
+        <div id="product-list">
+            <div class="product" data-category="kategori3">
+                <img src="Vios_gen2.png" alt="Produk 1">
+                <h2>Power Window set 4 pintu Vios limo gen 2 Original PNP</h2>
+                <p class="price">Rp 1.400.000</p>
+                <p>Untuk mobil vios limo gen 2 tahun 2007-2013. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Vios_gen3.png" alt="Produk 2">
+                <h2>Power Window set 4 pintu Vios limo gen 3 Original PNP</h2>
+                <p class="price">Rp 1.500.000</p>
+                <p>Untuk mobil vios limo gen 2 tahun 2013-2022. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Amrest_GM.jpg" alt="Produk 3">
+                <h2>Armrest set Daihatsu Grandmax Minibus, pickup, blindvan</h2>
+                <p class="price">Rp 165.000</p>
+                <p>Armrest untuk mobil grandmax. Sudah termasuk tutup baut dan tutup atasnya.</p>
+            </div>
+            <div class="product" data-category="kategori1">
+                <img src="regulator_GM.jpg" alt="Produk 4">
+                <h2>Regulator gigi Power window Grandmax depan</h2>
+                <p class="price">Rp 170.000</p>
+                <p>Untuk mobil grandmax minibus, pickup, blindvan, box.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="mangkok_universal.jpg" alt="Produk 5">
+                <h2>Mangkok doortrim power window panther Hi-sporty</h2>
+                <p class="price">Rp 17.000</p>
+                <p>Tersedia hanya warna hitam.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="mangkok_universal.jpg" alt="Produk 6">
+                <h2>Mangkok doortrim power window Vios limo, Kijang</h2>
+                <p class="price">Rp 17.000</p>
+                <p>Tersedia hanya warna hitam dan abu-abu. Untuk mobil vios limo (2007-2022) dan kijang kapsul LGX, LSX, SSX.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Ayla_4pintu.jpg" alt="Produk 7">
+                <h2>Power window set ayla 4 pintu siap pasang Original</h2>
+                <p class="price">Rp 2.000.000</p>
+                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off dari pintu supir.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="Rel-KACA.jpg" alt="Produk 8">
+                <h2>Rel kaca Regulator power window</h2>
+                <p class="price">Rp 45.000</p>
+                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="newa Carry_panah.jpg" alt="Produk 9">
+                <h2>Power window set New carry 2 pintu - (saklar biasa)</h2>
+                <p class="price">Rp 1.000.000</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar biasa untuk naik turun kaca. Pemasangan PNP</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Newcarry_auto.jpg" alt="Produk 10">
+                <h2>Power window set New carry 2 pintu - (saklar auto)</h2>
+                <p class="price">Rp 1.150.000</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar bisa auto up down. Tersedia tombol on off. Pemasangan PNP</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="pw_viosgen1.jpeg" alt="Produk 11">
+                <h2>1 set Power window mobil vios limo 4 pintu PNP ORI </h2>
+                <p class="price">Rp 1.400.000</p>
+                <p>Untuk mobil vios limo gen 1 tahun 2002-2007. Tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="GM_amrest_kiri.jpeg" alt="Produk 12">
+                <h2>1 set Power window mobil Daihatsu Grandmax + amrest kiri/h2>
+                <p class="price">Rp 1.220.000</p>
+                <p>Untuk mobil Grandmax minibus, pickup, blindvan. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="GM_cover.jpeg" alt="Produk 13">
+                <h2>1 set Power window mobil Daihatsu Grandmax + cover kanan kiri</h2>
+                <p class="price">Rp 980.000</p>
+                <p>Untuk mobil Grandmax minibus, pickup, blindvan. Saklar tinggal pasang tidak perlu melubangi amrest kembali. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="GM_ORI .jpeg" alt="Produk 14">
+                <h2>1 set Power window mobil Daihatsu Grandmax Saklar ON OFF</h2>
+                <p class="price">Rp 1.200.000</p>
+                <p>Untuk mobil Grandmax minibus, pickup, blindvan. Tersedia tombol On Off, Saklar penumpang bisa dinonaktifkan dari pintu supir. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP.</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Etios.jpg" alt="Produk 15">
+                <h2>1 set Power window Etios 4 pintu </h2>
+                <p class="price">Rp 1.450.000</p>
+                <p>Untuk mobil Etios falcao, Etios Liva. Tersedia tombol On Off, Saklar penumpang bisa dinonaktifkan dari pintu supir. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP.</p>
+            </div>
+            <div class="product" data-category="kategori1">
+                <img src="Regulator_kijang _4p.jpg" alt="Produk 16">
+                <h2>Regulator motor set power window kijang kapsul LGX, LSX 4 pintu</h2>
+                <p class="price">Rp 1.100.000</p>
+                <p>Untuk mobil kijang kapsul LGX, LSX, SSX. Barang baru.</p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="tutup_engkolan.jpg" alt="Produk 17">
+                <h2>Tutup lubang doortrim putaran kaca mobil universal satuan.</h2>
+                <p class="price">Rp 7.500</p>
+                <p>Untuk semua jenis mobil, Bahan plastik. diameter atas 4 cm, Silahkan bertanya untuk memastikan jenis mobilnya. </p>
+            </div>
+            <div class="product" data-category="kategori4">
+                <img src="Mangkok_panther.jpg" alt="Produk 18">
+                <h2>Mangkok doortrim pintu mobil isuzu Panther kapsul, Touring,New LS LV.</h2>
+                <p class="price">Rp 17.000</p>
+                <p>Untuk mobil Panther Touring, Grand Touring, New LS, New LV, Panther kapsul Beige. </p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Kijang_grand.jpg" alt="Produk 19">
+                <h2>1 Set power window kijang Grand Super 2 pintu PNP</h2>
+                <p class="price">Rp 1.000.000</p>
+                <p>Untuk mobil Kijang Super, Kijang Grand. 1 set tinggal pasang saja. </p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="Kijang_grand_A.jpg" alt="Produk 20">
+                <h2>1 Set power window kijang Grand Super 2 pintu + Amrest PNP</h2>
+                <p class="price">Rp 1.650.000</p>
+                <p>Untuk mobil Kijang Super, Kijang Grand. 1 set tinggal pasang saja. Terdapat tombol khsusu untuk central lock</p>
+            </div>
+            <div class="product" data-category="kategori3">
+                <img src="kijang_grand_B.jpg" alt="Produk 21">
+                <h2>1 Set power window kijang Grand Super 2 pintu + Saklar ON OFF PNP</h2>
+                <p class="price">Rp 1.650.000</p>
+                <p>Untuk mobil Kijang Super, Kijang Grand. 1 set tinggal pasang saja. Tersedia tombol On Off, Saklar penumpang bisa dinonaktifkan dari pintu supir. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP.</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all' || product.getAttribute('data-category') === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function searchProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const productName = product.querySelector('h2').innerText.toLowerCase();
+                if (productName.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Default to showing all products
+        filterProducts('all');
+    </script>
+</body>
+</html>
