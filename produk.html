@@ -22,19 +22,26 @@
             background-color: #333;
             padding: 10px 0;
         }
-        nav a, nav button {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            color: #555;
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav button {
+            background-color: transparent; /* Ganti dari #fff menjadi transparent */
+            border: 1px solid #ffffff;
+            color: #f7f7f7; /* Ubah warna teks menjadi putih agar sesuai dengan latar belakang gelap */
             cursor: pointer;
             margin: 0 5px;
             padding: 5px 5px;
             text-decoration: none;
         }
         nav a:hover, nav button:hover {
-            background-color: #555;
-            color: white;
+            background-color: #97d2f9;
+            color: #f3f3f3;
         }
+        
         main {
             padding: 20px;
             display: flex;
@@ -66,6 +73,84 @@
         .product p {
             margin: 5px 0;
         }
+
+        .product-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            overflow-x: auto; /* Jika jumlah gambar terlalu banyak, ini akan membuat scroll horizontal */
+        }
+
+        .product-gallery img {
+            max-width: 100px; /* Atur ukuran gambar sesuai keinginan */
+            max-height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product-gallery img:hover {
+            transform: scale(1.1); /* Zoom sedikit saat hover */
+        }
+
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#modalGallery img {
+    max-width: 150px;
+    height: auto;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#modalGallery img:hover {
+    transform: scale(1.1);
+}
+
+
+
         @media (max-width: 1200px) {
             .product {
                 width: calc(33.33% - 40px); /* Width for medium screens */
@@ -134,12 +219,33 @@
 
     <main>
         <div id="product-list">
-            <div class="product" data-category="kategori3">
-                <img src="Vios_gen2.png" alt="Produk 1">
+            <div class="product" data-category="kategori3" onclick="openModal({
+                title: 'Power Window set 4 pintu Vios limo gen 2 Original PNP',
+                images: ['Vios_gen2.png', 'Vios_gen2_alt1.png'], 
+                price: 'Rp 1.400.000',
+                description: 'Untuk mobil vios limo gen 2 tahun 2007-2013. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Pemasangan PNP sudah lengkap. <br><br> Barang 1 set sudah include:<br> - Regulator 4 pcs<br> - Motor 4 pcs<br> - Kabel set + soket<br> - Saklar supir + cover<br> - Saklar penumpang 3 pcs<br> - Mangkok 1 pcs<br> - Tutup engkolan 4 pcs.'
+            })">
+                <div class="product-gallery">
+                    <img src="Vios_gen3.png" alt="Produk 1 - Gambar Utama">
+                    <img src="Vios_gen2.png" alt="Produk 1 - Gambar 2">
+                </div>
                 <h2>Power Window set 4 pintu Vios limo gen 2 Original PNP</h2>
                 <p class="price">Rp 1.400.000</p>
-                <p>Untuk mobil vios limo gen 2 tahun 2007-2013. Saklar supir auto up down, tersedia tombol central lock, dan On Off. Saklar penumpang bisa dinonaktifkan dari pintu supir. Pemasangan PNP sudah lengkap. <br><br> barang 1 set sudah include:<br> - Regulator 4 pcs   <br> - Motor 4 pcs <br>  - kabel set + soket <br> - Saklar supir + cover  <br> -Saklar penumpang 3 pcs <br> - Mangkok 1 pcs  <br> - Tutup engkolan 4 pcs.</p>
+                <p>Untuk mobil vios limo gen 2 tahun 2007-2013...</p>
             </div>
+        </div>
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <div id="modalGallery"></div>
+                <p class="price" id="modalPrice"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+        
+                
+        
             <div class="product" data-category="kategori3">
                 <img src="Vios_gen3.png" alt="Produk 2">
                 <h2>Power Window set 4 pintu Vios limo gen 3 Original PNP</h2>
@@ -174,7 +280,7 @@
                 <img src="Ayla_4pintu.jpg" alt="Produk 7">
                 <h2>Power window set ayla 4 pintu siap pasang Original</h2>
                 <p class="price">Rp 2.000.000</p>
-                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off dari pintu supir.</p>
+                <p>Untuk mobil ayla all type. Saklar supir Auto up down untuk naik turun kaca, tersedia tombol On Off dari pintu supir. <br><br> barang 1 set sudah include:<br> - Regulator 4 pcs   <br> - Motor 4 pcs <br>  - kabel set + soket <br> - Saklar supir  <br> -Saklar penumpang 3 pcs <br> - Armrest dudukan 4 pcs</p>
             </div>
             <div class="product" data-category="kategori4">
                 <img src="Rel-KACA.jpg" alt="Produk 8">
@@ -186,13 +292,13 @@
                 <img src="newa Carry_panah.jpg" alt="Produk 9">
                 <h2>Power window set New carry 2 pintu - (saklar biasa)</h2>
                 <p class="price">Rp 1.000.000</p>
-                <p>Untuk mobil new Carry pickup all type. Saklar biasa untuk naik turun kaca. Pemasangan PNP</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar biasa untuk naik turun kaca. Pemasangan PNP <br><br> barang 1 set sudah include:<br> - Regulator 2 pcs   <br> - Motor 2 pcs <br>  - kabel set + soket <br> - Saklar supir + cover  <br> -Saklar penumpang + cover.</p>
             </div>
             <div class="product" data-category="kategori3">
                 <img src="Newcarry_auto.jpg" alt="Produk 10">
                 <h2>Power window set New carry 2 pintu - (saklar auto)</h2>
                 <p class="price">Rp 1.150.000</p>
-                <p>Untuk mobil new Carry pickup all type. Saklar bisa auto up down. Tersedia tombol on off. Pemasangan PNP</p>
+                <p>Untuk mobil new Carry pickup all type. Saklar bisa auto up down. Tersedia tombol on off. Pemasangan PNP <br><br> barang 1 set sudah include:<br> - Regulator 2 pcs   <br> - Motor 2 pcs <br>  - kabel set + soket <br> - Saklar supir + cover  <br> -Saklar penumpang + cover.</p>
             </div>
             <div class="product" data-category="kategori3">
                 <img src="pw_viosgen1.jpeg" alt="Produk 11">
@@ -223,7 +329,7 @@
                 <img src="Etios.jpg" alt="Produk 15">
                 <h2>1 set Power window Etios 4 pintu </h2>
                 <p class="price">Rp 1.450.000</p>
-                <p>Untuk mobil Etios falcao, Etios Liva. Tersedia tombol On Off, Saklar penumpang bisa dinonaktifkan dari pintu supir. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP. Barang baru bukan copotan. Garansi 1 bulan</p>
+                <p>Untuk mobil Etios falcao, Etios Liva. Tersedia tombol On Off, Saklar penumpang bisa dinonaktifkan dari pintu supir. Semua sudah lengkap tinggal pasang saja. Pemasangan lubang baut PNP. Barang baru bukan copotan. Garansi 1 bulan <br><br> barang 1 set sudah include:<br> - Regulator 4 pcs   <br> - Motor 4 pcs <br>  - kabel set + soket <br> - Saklar supir   <br> -Saklar penumpang 3 pcs <br> - Tutup engkolan 4 pcs.</p>
             </div>
             <div class="product" data-category="kategori1">
                 <img src="Regulator_kijang _4p.jpg" alt="Produk 16">
@@ -253,7 +359,7 @@
                 <img src="Kijang_grand_A.jpg" alt="Produk 20">
                 <h2>1 Set power window kijang Grand Super 2 pintu + Amrest PNP</h2>
                 <p class="price">Rp 1.650.000</p>
-                <p>Untuk mobil Kijang Super, Kijang Grand. 1 set tinggal pasang saja.Barang baru bukan copotan. Terdapat tombol khusus untuk central lock</p>
+                <p>Untuk mobil Kijang Super, Kijang Grand. 1 set tinggal pasang saja.Barang baru bukan copotan. Terdapat tombol khusus untuk central lock <br><br> barang 1 set sudah include:<br> - Regulator 2 pcs   <br> - Motor 2 pcs <br>  - kabel set + soket <br> - Saklar supir  <br> -Saklar penumpang <br> - Armrest dudukan 2 pcs.</p>
             </div>
             <div class="product" data-category="kategori3">
                 <img src="kijang_grand_B.jpg" alt="Produk 21">
@@ -405,6 +511,12 @@
                 <p class="price">Rp 200.000 </p>
                 <p> Untuk mobil Agya, Calya, Sigra , Ayla tahun 2012-ke atas. Depan kanan kiri harga tetap sama. Regulator Original Astra Toyota.Motor universal lokal lubang baut PNP tinggal pasang.</p>
             </div>
+            <div class="product" data-category="kategori3">
+                <img src="grandmax_panah.jpg" alt="Produk 46">
+                <h2>1 set power window Grandmax Pickup, Minibus, Blindvan - Saklar Panah  </h2>
+                <p class="price">Rp 800.000 </p>
+                <p> Untuk mobil Agya, Calya, Sigra , Ayla tahun 2012-ke atas. Depan kanan kiri harga tetap sama. Regulator Original Astra Toyota.Motor universal lokal lubang baut PNP tinggal pasang.</p>
+            </div>
         </div>
     </main>
     <script>
@@ -431,6 +543,47 @@
                 }
             });
         }
+
+        function openModal(productDetails) {
+    // Set modal title
+    document.getElementById('modalTitle').innerText = productDetails.title;
+
+    // Set modal gallery
+    const modalGallery = document.getElementById('modalGallery');
+    modalGallery.innerHTML = '';
+    productDetails.images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = productDetails.title;
+        modalGallery.appendChild(img);
+    });
+
+    // Set modal price
+    document.getElementById('modalPrice').innerText = productDetails.price;
+
+    // Set modal description
+    document.getElementById('modalDescription').innerHTML = productDetails.description;
+
+    // Show modal
+    const modal = document.getElementById('productModal');
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside the modal content
+window.onclick = function(event) {
+    const modal = document.getElementById('productModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+
+
 
         // Default to showing all products
         filterProducts('all');
